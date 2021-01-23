@@ -15,7 +15,7 @@ let findAccount = (id, accounts) => {
 }
 
 let deposit = (id, amount) => {
-    let account = findAccount(id, accounts).accounts
+    let account = findAccount(id, accounts).account
     if (account.isTrue == 0)
         console.log("there is no account with the specified account number!")
     else {
@@ -50,9 +50,9 @@ let balance = (id) => {
 let transfer = (id, to, amount) => {
     let account = findAccount(id, accounts).account
     let for_who = findAccount(to, accounts).account
-    if (account.isTrue == 0 ) {
+    if (account.isTrue == 0) {
         console.log(`Dear customer the account number you inserted is not correct!!`);
-        
+
     } else {
         if (account.amount < amount)
             console.log(`Your current account balance ------- ${account.amount} ETB ------- is insufficient to make ----- ${amount} ETB ----- transfer!!`);
@@ -94,36 +94,33 @@ let print = (accounts) => {
             let amount = prompt("amount")
             let fullName = prompt("your full name?")
             register(id, parseInt(amount), fullName)
-            print(accounts)
         }
         else if (choice == "2") {
             let id = prompt("acc no.")
             let to = prompt("to acc")
             let amount = prompt("amount")
             transfer(id, to, parseInt(amount))
-            print(accounts)
         }
         else if (choice == "3") {
             let id = prompt("acc no.")
             balance(id)
-            print(accounts)
         } else if (choice == "4") {
             let id = prompt("acc no.")
             let amount = prompt("amount")
             withdraw(id, amount)
-            print(accounts)
         }
         else if (choice == "5") {
-            let id = prompt("acc no.")
+            let acc_id = prompt("acc no.")
+            console.log(acc_id);
             let amount = prompt("amount")
-            deposit(id, amount)
-            print(accounts)
+            deposit(acc_id, amount)
         } else {
-            console.log()
             break
-
         }
+
+        print(accounts)
 
         choice = prompt("register: 1 \n transfer: 2 \n balance: 3 \n withdraw:4 \n deposit: 5 \n anyKeyToQuit:😞")
     }
+    console.log("Thank you for using our banking system");
 })()
