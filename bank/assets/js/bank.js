@@ -2,10 +2,11 @@
 let accounts = [
     { name: "Natnael Abay", acc_id: 1, amount: 4_000 },
     { name: "Kebede Chala", acc_id: 2, amount: 2_000 },
-
 ]
 
-let findAccount = (id, accounts) => {
+
+
+let findAccount = function(id, accounts)  {
     for (let i = 0; i < accounts.length; i++) {
         if (accounts[i].acc_id == id) {
             return { account: accounts[i], isTrue: 1 }
@@ -14,7 +15,7 @@ let findAccount = (id, accounts) => {
     return { isTrue: 0 }
 }
 
-let deposit = (id, amount) => {
+let deposit = function(id, amount)  {
     let account = findAccount(id, accounts).account
     if (account.isTrue == 0)
         console.log("there is no account with the specified account number!")
@@ -24,7 +25,7 @@ let deposit = (id, amount) => {
     }
 }
 
-let withdraw = (id, amount) => {
+let withdraw = function(id, amount)  {
     let account = findAccount(id, accounts).account
     if (account.isTrue == 0) {
         console.log(`There is no Account with ${id} account number try again!!!`);
@@ -39,7 +40,7 @@ let withdraw = (id, amount) => {
         }
     }
 }
-let balance = (id) => {
+let balance = function(id) {
     let account = findAccount(id, accounts).account
     if (account.isTrue == 0)
         console.log(`There is no Account with ${id} account number try again!!!`);
@@ -47,7 +48,7 @@ let balance = (id) => {
         console.log(`Dear ${account.name} with account number ${account.acc_id} your account balance is ----- ${account.amount} ETB ----- thank you for your  service`)
 }
 
-let transfer = (id, to, amount) => {
+let transfer = function(id, to, amount) {
     let account = findAccount(id, accounts).account
     let for_who = findAccount(to, accounts).account
     if (account.isTrue == 0) {
@@ -68,7 +69,7 @@ let transfer = (id, to, amount) => {
     }
 }
 
-let register = (acc_id, amount, name) => {
+let register = function(acc_id, amount, name) {
     acc_id = parseInt(acc_id)
     accounts.push({
         name,
@@ -83,8 +84,7 @@ let print = (accounts) => {
     console.log("\n")
 }
 
-
-(function () {
+( () => {
     print(accounts)
     let choice = prompt("register: 1 \n transfer: 2 \n balance: 3 \n withdraw:4 \n deposit: 5 \n anyKeyToQuit:😞")
     while (true) {
@@ -111,7 +111,6 @@ let print = (accounts) => {
         }
         else if (choice == "5") {
             let acc_id = prompt("acc no.")
-            console.log(acc_id);
             let amount = prompt("amount")
             deposit(acc_id, amount)
         } else {
